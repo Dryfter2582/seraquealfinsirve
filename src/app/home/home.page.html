@@ -1,0 +1,54 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title class="ion-text-center">
+      Create new account
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="user" (ngSubmit)="saveData()">
+    <ion-item>
+      <ion-label position="floating">Name:</ion-label>
+      <ion-input formControlName="name"></ion-input>
+    </ion-item>
+    <ion-label color="danger" 
+    *ngIf="user.controls.name.errors?.required && (user.touched || user.dirty)">* El nombre es obligatorio </ion-label>
+    <ion-label color="danger" 
+    *ngIf="user.controls.name.errors?.minlength && (user.touched || user.dirty)">* El nombre debe tener al menos 4 caracteres.</ion-label>
+
+    <ion-item>
+      <ion-label position="floating">Email:</ion-label>
+      <ion-input formControlName="email"></ion-input>
+    </ion-item>
+    <ion-label color="danger" *ngIf="user.controls.email.errors?.email && (user.touched || user.dirty)">* El email no es válido.</ion-label>
+
+    <ion-item>
+      <ion-label position="floating">Password:</ion-label>
+      <ion-input formControlName="email"></ion-input>
+    </ion-item>
+    <ion-label color="danger" 
+    *ngIf="user.controls.password.errors?.required && (user.touched || user.dirty)">* La contraseña es obligatoria </ion-label>
+    <ion-label color="danger" 
+    *ngIf="user.controls.password.errors?.minlength && (user.touched || user.dirty)">* La contraseña debe que tener al menos 8 caracteres.</ion-label>
+
+    <ion-item>
+      <ion-label  position="floating">Confirm Password:</ion-label>
+      <ion-input formControlName="email"></ion-input>
+      <ion-label *ngIf="user.controls.confirmPassword.errors?.required && (user.touched || user.dirty)">* La contraseña no coincide </ion-label>
+    </ion-item>
+    
+ </form>
+ 
+ <ion-item class="ion-text-center">
+    <ion-button type="submit" [disabled]="!user.valid">Create Account</ion-button>
+ </ion-item>
+ 
+
+ <ion-item class="ion-text-center">
+  <ion-label>Or</ion-label>
+</ion-item>
+ 
+    <ion-button class="ion-text-center" fill="outline" (click)="rename()">Login</ion-button>
+ 
+</ion-content>
